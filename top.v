@@ -18,7 +18,8 @@ wire broke;
 
 defparam r1.clk_length = 60;
 defparam s1.clk_pariod = 50;
-
+defparam r1.bowd_rate = 9600;
+defparam s1.bowd_rate = 9600 ;
 initial
 forever #(s1.clk_pariod/2) sender_clk=~sender_clk;
 

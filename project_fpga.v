@@ -4,6 +4,7 @@ module sender (
     send_data , 
     out_serial_bit,
 );
+	parameter bowd_rate = 9600 ; 
     parameter clk_pariod = 50;
 	input send_flag,clk;
     input [6:0] send_data;
@@ -25,7 +26,7 @@ module sender (
     
    
     initial begin
-        max_clk = 3000 / clk_pariod - 5 ;
+        max_clk = ((1000000000/bowd_rate) / clk_pariod) - 5 ;
         curent_pos= 1 ; 
         clk_counter = -1 ; 
         counter_even = 0 ; 

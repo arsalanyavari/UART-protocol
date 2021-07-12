@@ -1,4 +1,4 @@
-module Reciever (
+module reciever (
     clk,
     recieve_bit,
     out,
@@ -14,11 +14,13 @@ module Reciever (
     integer cnt; //cnt is counter
     integer i; //using for loops
     integer max_clk;
+	parameter bowd_rate = 9600 ; 
     parameter clk_length = 60;
     integer clk_cnt;
     integer sum;
     initial begin
-        max_clk = 104167 / clk_length;
+		
+        max_clk = ((1000000000/bowd_rate) / clk_length);
         cnt = 0;
         recieve_flag =1'b0;
         clk_cnt = 0;
@@ -30,9 +32,9 @@ module Reciever (
         start_bit = recieve_bit;
         if(start_bit == 1'b0)
         begin
-            recieve_flag == 1'b1;
+            recieve_flag = 1'b1;
         end
-        if (recieve_flag = 1'b1) begin
+        if (recieve_flag == 1'b1) begin
             if(clk_cnt >= max_clk)
             begin
             if(cnt==7)
