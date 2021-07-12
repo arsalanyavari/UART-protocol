@@ -17,7 +17,7 @@ module Reciever (
     parameter clk_length = 60;
     integer clk_cnt;
     integer sum;
-    #initial begin
+    initial begin
         max_clk = 104167 / clk_length;
         cnt = 0;
         recieve_flag =1'b0;
@@ -30,7 +30,7 @@ module Reciever (
         start_bit = recieve_bit;
         if(start_bit == 1'b0)
         begin
-            recieve_flag = 1'b1;
+            recieve_flag == 1'b1;
         end
         if (recieve_flag = 1'b1) begin
             if(clk_cnt >= max_clk)
