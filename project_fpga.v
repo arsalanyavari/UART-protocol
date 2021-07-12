@@ -25,10 +25,11 @@ module sender (
     
    
     initial begin
-        max_clk = 104167 / clk_pariod;
-        curent_pos= 0 ; 
+        max_clk = 3000 / clk_pariod - 5 ;
+        curent_pos= 1 ; 
         clk_counter = -1 ; 
         counter_even = 0 ; 
+		out_serial_bit = 1'b1;
     end 
     always @(posedge clk) begin
 	if(curent_pos <=9 )
@@ -37,6 +38,7 @@ module sender (
             begin
                 if(clk_counter == -1 )
                 begin
+				out_serial_bit = 1'b0 ;
                 for (i = 1 ; i<=7 ; i= i +1)
                 begin
                     if(send_data[i-1] == 1'b1)
