@@ -2,7 +2,7 @@ module top;
 
 reg sender_clk = 1'b0;
 reg sender_flag = 1'b1;
-reg[6:0] sender_data = 7'b0000000;
+reg[6:0] sender_data = 7'b1010101;
 wire bit;
 
 reg receiver_clk = 1'b0;
@@ -27,6 +27,6 @@ forever #(r1.clk_length/2) receiver_clk=~receiver_clk;
 
 
 sender s1(sender_clk, sender_flag, sender_data, bit);
-Receiver r1(receiver_clk, bit, out_rec, broke);
+reciever r1(receiver_clk, bit, out_rec, broke);
 
 endmodule
