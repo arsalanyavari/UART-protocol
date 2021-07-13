@@ -8,13 +8,13 @@ module sender (
     parameter clk_pariod = 50;
 	input send_flag,clk;
     input [6:0] send_data;
-    output reg  out_serial_bit;
+    output reg  out_serial_bit = 1'b1;
     reg [9:0] data_reg;
-    integer curent_pos; 
-    integer max_clk; 
-    integer clk_counter ;
+    integer curent_pos = 1; 
+    integer max_clk = ((1000000000/bowd_rate) / clk_pariod) - 5 ; 
+    integer clk_counter = -1  ;
     integer  i;
-    integer counter_even;
+    integer counter_even = 0 ;
     // clk generator 
     // always begin
     //     clk = 1'b0;
@@ -24,14 +24,14 @@ module sender (
     //     end
     // end
     
-   
-    initial begin
-        max_clk = ((1000000000/bowd_rate) / clk_pariod) - 5 ;
-        curent_pos= 1 ; 
-        clk_counter = -1 ; 
-        counter_even = 0 ; 
-		out_serial_bit = 1'b1;
-    end 
+
+    // initial begin
+        // max_clk = ((1000000000/bowd_rate) / clk_pariod) - 5 ;
+        // curent_pos= 1 ; 
+        // clk_counter = -1 ; 
+        // counter_even = 0 ; 
+		// out_serial_bit = 1'b1;
+    // end
     always @(posedge clk) begin
 	if(curent_pos <=9 )
 	begin

@@ -7,26 +7,28 @@ module reciever (
 );
     input clk;
     input wire recieve_bit;
-    reg recieve_flag, parity, end_bit, start_bit;
+    reg recieve_flag = 1'b0 ;
+	reg  parity, end_bit, start_bit;
     reg [6:0] packet; //paralel data output
     output reg [6:0] out;
-    output reg broken;
-    integer cnt; //cnt is counter
+    output reg broken = 0;
+    integer cnt = 0 ; //cnt is counter
     integer i; //using for loops
-    integer max_clk;
 	parameter bowd_rate = 9600 ; 
     parameter clk_length = 60;
-    integer clk_cnt;
-    integer sum;
-    initial begin
+    integer max_clk = ((1000000000/bowd_rate) / clk_length);
+    integer clk_cnt = 0;
+    integer sum= 0 ;
+	
+    // initial begin
 		
-        max_clk = ((1000000000/bowd_rate) / clk_length);
-        cnt = 0;
-        recieve_flag =1'b0;
-        clk_cnt = 0;
-        sum = 0;
-        broken = 0;
-    end
+        // max_clk = ((1000000000/bowd_rate) / clk_length);
+        // cnt = 0;
+        // recieve_flag =1'b0;
+        // clk_cnt = 0;
+        // sum = 0;
+        // broken = 0;
+    // end
     
     always @(posedge clk) begin
         start_bit = recieve_bit;
